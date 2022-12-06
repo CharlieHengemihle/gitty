@@ -22,3 +22,6 @@ jobs:
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
           SALT_ROUNDS: ${{ secrets.SALT_ROUNDS }}
           COOKIE_NAME: ${{ secrets.COOKIE_NAME }}
+          GH_CLIENT_ID: client_id
+          GH_CLIENT_SECRET: secret
+          GH_REDIRECT_URI: http://localhost:7890/api/v1/github/callback

@@ -34,4 +34,12 @@ describe('github auth', () => {
       exp: expect.any(Number),
     });
   });
+  it('/api/v1/github should log out a user', async () => {
+    const agent = request.agent(app);
+    await agent.get('/api/v1/github/callback?code=42').redirects(1);
+    const deleteUser = await agent.delete('/api/v1/github/dashboard');
+    expect(deleteUser.status).toBe(200);
+    const check = await agent.get('/api/v1/github/dashboard');
+    expect(check.status).toBe(401);
+  });
 });
